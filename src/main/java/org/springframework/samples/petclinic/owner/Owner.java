@@ -61,6 +61,10 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets;
 
+    private int age;
+
+    private String searchName;
+
     public String getAddress() {
         return this.address;
     }
@@ -138,6 +142,22 @@ public class Owner extends Person {
             }
         }
         return null;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSearchName() {
+        return searchName;
+    }
+
+    public void setSearchName(String searchName) {
+        this.searchName = searchName;
     }
 
     @Override
