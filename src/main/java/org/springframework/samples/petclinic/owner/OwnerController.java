@@ -52,6 +52,7 @@ class OwnerController {
     }
 
     @GetMapping("/owners/new")
+    @LogExecutionTime
     public String initCreationForm(Map<String, Object> model) {
         Owner owner = new Owner();
         model.put("owner", owner);
@@ -69,12 +70,14 @@ class OwnerController {
     }
 
     @GetMapping("/owners/find")
+    @LogExecutionTime
     public String initFindForm(Map<String, Object> model) {
         model.put("owner", new Owner());
         return "owners/findOwners";
     }
 
     @GetMapping("/owners")
+    @LogExecutionTime
     public String processFindForm(Owner owner, BindingResult result, Map<String, Object> model) {
 
         // allow parameterless GET request for /owners to return all records
@@ -100,6 +103,7 @@ class OwnerController {
     }
 
     @GetMapping("/owners/{ownerId}/edit")
+    @LogExecutionTime
     public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
         Owner owner = this.owners.findById(ownerId);
         model.addAttribute(owner);
@@ -124,6 +128,7 @@ class OwnerController {
      * @return a ModelMap with the model attributes for the view
      */
     @GetMapping("/owners/{ownerId}")
+    @LogExecutionTime
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
         mav.addObject(this.owners.findById(ownerId));
